@@ -1,0 +1,4 @@
+Jellyfish and fish sprite created by me (Andy Freshnock)
+Background Image created by Alex Como, created for use in this game
+Hit sound effect created using JSFXR under the Unlincense https://sfxr.me/
+Background music created by Magnetic_Trailer downloaded from pixabay under their Content License   https://pixabay.com/music/beautiful-plays-mountain-path-125573/
