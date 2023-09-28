@@ -12,10 +12,10 @@ namespace fishtastic.GameObjects
 {
     public interface IGameObject
     {
-        public void Draw(SpriteBatch spritebatch);
+        public void LoadContent(ContentManager contentmanager);
 
         public void Update(GameTime gameTime);
 
-        public void LoadContent(ContentManager contentmanager);
+        public void Draw(SpriteBatch spritebatch);        
     }
 }

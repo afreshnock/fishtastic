@@ -13,7 +13,7 @@ namespace fishtastic
         private SpriteBatch _spriteBatch;
         private Song _backgroundSong;
         private Screen[] _screenArray= new Screen[] {new MainMenuScreen(), new GameScreen() }; 
-        private int _screenCount =0;
+        private int _screenSelect =0;
         private KeyboardState _current;
         private KeyboardState _prev;
 
@@ -50,24 +50,32 @@ namespace fishtastic
         {
             _prev = _current; 
             _current = Keyboard.GetState();
-            if (_prev.IsKeyUp(Keys.Escape) && _current.IsKeyDown(Keys.Escape))
+           
+            if (_current.IsKeyDown(Keys.Escape) && _prev.IsKeyUp(Keys.Escape))
             {
-                if(_screenCount == 0)
+                if (_screenSelect == 0)
                 {
                     Exit();
                 }
                 else
                 {
-                    _screenCount = 0;
+                    _screenSelect = 0;
                 }
             }
-            if(Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (_current.IsKeyDown(Keys.Enter) && _prev.IsKeyUp(Keys.Enter) && _screenArray[_screenSelect] is MainMenuScreen s)
             {
-                _screenCount = 1;
+                switch (s.menuCounter)
+                {
+                    case 0: _screenSelect = 1; break;
+                    case 1: _screenSelect = 0; break; // TODO 
+                    case 2: _screenSelect = 0; break; // TODO
+                    case 3: Exit(); break;
+                    default: throw new System.Exception();
+                }
+                
+                
             }
-            _screenArray[_screenCount].Update(gameTime);
-            // TODO: Add your update logic here
-
+            _screenArray[_screenSelect].Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -76,7 +84,7 @@ namespace fishtastic
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            _screenArray[_screenCount].Draw(_spriteBatch);
+            _screenArray[_screenSelect].Draw(_spriteBatch);
             base.Draw(gameTime);
         }
     }
