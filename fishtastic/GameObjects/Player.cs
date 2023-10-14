@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using fishtastic.Collison;
+using fishtastic.Particles;
 
 namespace fishtastic.GameObjects
 {
     public class Player : IGameObject
     {
-        private Vector2 posistion;
-        private Vector2 velocity;
+        public Vector2 posistion;
+        public Vector2 velocity;
         private float maxVelocity = 750;
         private float velocityStep = 5;
         private Texture2D texture;
@@ -137,10 +138,10 @@ namespace fishtastic.GameObjects
                 rotation = lastRotation;
             }
 
-            if (posistion.X > 1920) posistion.X = 0;
-            if (posistion.X < 0) posistion.X = 1920;
-            if (posistion.Y > 1080) posistion.Y = 0;
-            if (posistion.Y < 0) posistion.Y = 1080;
+            //if (posistion.X > 1920) posistion.X = 0;
+            //if (posistion.X < 0) posistion.X = 1920;
+            //if (posistion.Y > 1080) posistion.Y = 0;
+            //if (posistion.Y < 0) posistion.Y = 1080;
 
 
             bounds = new BoundingRectangle(posistion.X + (30 - 64) * scale, posistion.Y + (40 - 64) * scale, 70 * scale, 40 * scale);

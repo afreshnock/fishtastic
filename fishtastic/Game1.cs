@@ -12,7 +12,7 @@ namespace fishtastic
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Song _backgroundSong;
-        private Screen[] _screenArray= new Screen[] {new MainMenuScreen(), new GameScreen() }; 
+        private Screen[] _screenArray; 
         private int _screenSelect =0;
         private KeyboardState _current;
         private KeyboardState _prev;
@@ -25,13 +25,13 @@ namespace fishtastic
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
+            _screenArray = new Screen[] { new MainMenuScreen(), new GameScreen() };
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+            _screenArray[1].Initialize();
             base.Initialize();
         }
 
@@ -44,6 +44,7 @@ namespace fishtastic
             _screenArray[0].LoadContent(Content);
             _screenArray[1].LoadContent(Content);
             // TODO: use this.Content to load your game content here
+            base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)

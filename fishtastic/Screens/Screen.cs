@@ -19,7 +19,7 @@ namespace fishtastic.Screens
 
         public List<IGameObject> _objectList;
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             // todo
         }
@@ -41,12 +41,12 @@ namespace fishtastic.Screens
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             foreach (IGameObject obj in _objectList)
             {
                 obj.Draw(spriteBatch);
             }
-            spriteBatch.End();
+            //spriteBatch.End();
         }
     }
 }

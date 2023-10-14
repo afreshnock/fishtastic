@@ -21,7 +21,7 @@ namespace fishtastic.GameObjects
         private float spawnOverflow;
         private Texture2D jellyTexture;
         private float scale;
-        private BoundingRectangle screenRect = new BoundingRectangle(-50, -50, 2000, 1150);
+        private BoundingRectangle screenRect = new BoundingRectangle(-50, -50, 7600, 4350);
 
         public Spawner(Vector2 pos, Color color, float scale)
         {

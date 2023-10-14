@@ -1,4 +1,5 @@
 ﻿using fishtastic.GameObjects;
+using fishtastic.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,8 +22,11 @@ namespace fishtastic.Screens
         private float[] scales = new float[] {1,1,1,1};
         private KeyboardState prev , current;
         private bool scaling = true;
+        private BubbleParticleSystem bubbleParticleSystem;
         public override void LoadContent(ContentManager content)
         {
+            bubbleParticleSystem = new BubbleParticleSystem(5000);
+            _objectList.Add(bubbleParticleSystem);
             _title = content.Load<Texture2D>("fishtastic");
             _background = content.Load<Texture2D>("sea");
             _font = content.Load<SpriteFont>("File");
@@ -55,7 +59,7 @@ namespace fishtastic.Screens
             else if (scales[menuCounter] < 1)scaling = true;
             if(scaling) scales[menuCounter] += .005f;
             else scales[menuCounter] -= .005f;
-
+            bubbleParticleSystem.PlaceBubble(new Rectangle(0, 0, 1920, 1080));
 
             base.Update(gameTime);
         }
@@ -69,8 +73,9 @@ namespace fishtastic.Screens
             spriteBatch.DrawString(_font, "Controls", new Vector2(1920 / 2 - 80, 600), Color.Navy, 0, Vector2.Zero, scales[1], SpriteEffects.None, 0);
             spriteBatch.DrawString(_font, "Credits", new Vector2(1920 / 2 - 70, 700), Color.Navy, 0, Vector2.Zero, scales[2], SpriteEffects.None, 0);
             spriteBatch.DrawString(_font, "Exit", new Vector2(1920 / 2 - 50, 800), Color.Navy, 0, Vector2.Zero, scales[3], SpriteEffects.None, 0);
-            spriteBatch.End();
+            
             base.Draw(spriteBatch);
+            spriteBatch.End();
         }
 
     }
